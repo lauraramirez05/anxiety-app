@@ -4,13 +4,15 @@ import { useNavigate, Link } from 'react-router-dom';
 
 const Login = () => {
   const [username, setUsername] = useState('');
+  console.log(username);
   const [password, setPassword] = useState('');
+  console.log(password);
 
   async function submit(e) {
     e.preventDefault();
 
     try {
-      await axios.get('http://localhost:8080/', { username, password });
+      await axios.post('/api', { username, password });
     } catch (e) {
       console.log(e);
     }

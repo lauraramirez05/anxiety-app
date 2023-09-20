@@ -32,6 +32,11 @@ app.get('/', (req, res) => {
   res.status(200).sendFile(__dirname, '../client/public/index.html');
 });
 
+app.post('/api', (req, res) => {
+  console.log('hello');
+  console.log(req.body);
+});
+
 app.get('/api/sign-up', (req, res) => {
   console.log('inside of get signup');
   res.status(200).sendFile(path.join(__dirname, '../client/public/index.html'));
