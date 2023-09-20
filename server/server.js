@@ -28,8 +28,21 @@ db.once('open', () => {
 
 //ROUTES
 app.get('/', (req, res) => {
+  console.log('hello');
+  res.status(200).sendFile(__dirname, '../client/public/index.html');
+});
+
+app.get('/api/sign-up', (req, res) => {
+  console.log('inside of get signup');
   res.status(200).sendFile(path.join(__dirname, '../client/public/index.html'));
 });
+
+app.post('/sign-up', (req, res) => {
+  console.log('hellooo');
+  res.status(200);
+});
+
+app.use((req, res) => res.sendStatus(404));
 
 const PORT = process.env.port || 3000;
 app.listen(PORT, () => {
