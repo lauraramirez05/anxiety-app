@@ -29,7 +29,7 @@ db.once('open', () => {
 //ROUTES
 app.get('/', (req, res) => {
   res.status(200).sendFile(path.join(__dirname, '../index.html'));
-});
+});git 
 
 const PORT = process.env.port || 3000;
 app.listen(PORT, () => {
