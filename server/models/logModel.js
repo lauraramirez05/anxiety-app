@@ -16,6 +16,10 @@ const logSchema = new mongoose.Schema({
     type: String,
     required: true,
   },
+  trigger: {
+    type: String,
+    required: true,
+  },
   log: {
     type: String,
   },

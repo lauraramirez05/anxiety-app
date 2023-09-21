@@ -8,6 +8,8 @@ const SignUp = () => {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
 
+  const navigate = useNavigate();
+
   function clearInput() {
     console.log('hello');
     setFirstName('');
@@ -22,14 +24,22 @@ const SignUp = () => {
 
     try {
       console.log('axios call');
-      await axios.post('/api/sign-up', {
-        firstName,
-        email,
-        username,
-        password,
-      });
-      console.log('axios done')
-      clearInput();
+      await axios
+        .post('/api/sign-up', {
+          firstName,
+          email,
+          username,
+          password,
+        })
+        .then(function (response) {
+          if (response.status === 200) {
+            navigate('/home', { replace: true });
+          }
+        });
+      setFirstName('');
+      setEmail('');
+      setUsername('');
+      setPassword('');
     } catch (e) {
       console.log(e);
     }
@@ -37,29 +47,35 @@ const SignUp = () => {
 
   return (
     <div className='signup'>
-      <h1>Sign Up Page</h1>
+      <h2>Sign Up Page</h2>
       <form onSubmit={submit}>
         <input
           type='text'
           placeholder='First Name'
+          value={firstName}
           onChange={(e) => setFirstName(e.target.value)}
         ></input>
         <input
           type='email'
           placeholder='email'
+          value={email}
           onChange={(e) => setEmail(e.target.value)}
         ></input>
         <input
           type='text'
           placeholder='username'
+          value={username}
           onChange={(e) => setUsername(e.target.value)}
         ></input>
         <input
           type='password'
           placeholder='password'
+          value={password}
           onChange={(e) => setPassword(e.target.value)}
         ></input>
-        <button type='submit'></button>
+        <button className='btn' type='submit'>
+          Submit
+        </button>
       </form>
 
       <br />

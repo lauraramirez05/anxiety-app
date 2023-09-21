@@ -28,13 +28,19 @@ db.once('open', () => {
 });
 
 //ROUTES
+// if(process.env.NODE_ENV === 'produc')
+
 app.get('/', (req, res) => {
   console.log('hello');
-  res.status(200).sendFile(__dirname, '../client/public/index.html');
+  res.status(200).sendFile(__dirname, '../bundle/index.html');
 });
 
-app.post('/api', (req, res) => {
+
+
+app.post('/api', userController.getUser, (req, res) => {
+  console.log('inside login post');
   console.log(req.body);
+  res.status(200).send('ok');
 });
 
 app.post('/api/sign-up', userController.createUser, (req, res) => {
@@ -43,12 +49,25 @@ app.post('/api/sign-up', userController.createUser, (req, res) => {
   res.status(200).send('ok');
 });
 
+app.post('/api/home', (req,res) => {
+  
+})
+
+
 // app.post('/sign-up', (req, res) => {
 //   console.log('hellooo');
 //   res.status(200);
 // });
+app.get('/api', (req, res) => {
+  console.log('hitsign ups');
+  return res.status(200);
+});
 
-app.use((req, res) => res.sendStatus(404));
+// app.use('*', (err, req, res, next) => {
+//   return res.status(404).send('Page not founds');
+// });
+
+// app.use((req, res) => res.sendStatus(404));
 
 const PORT = process.env.port || 3000;
 app.listen(PORT, () => {

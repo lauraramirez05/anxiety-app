@@ -10,7 +10,6 @@ module.exports = {
 
   output: {
     path: path.resolve(__dirname, 'bundle'),
-    publicPath: '/',
     filename: 'bundle.js',
   },
 
@@ -20,7 +19,7 @@ module.exports = {
       directory: path.join(__dirname, 'public'), //gives an absolute path of the resource that is going to serve
     },
     compress: true,
-    port: 8080,
+    // port: 8080,
     proxy: {
       '/api': 'http://localhost:3000/',
     },

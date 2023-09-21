@@ -8,12 +8,28 @@ const Login = () => {
   const [password, setPassword] = useState('');
   console.log(password);
 
+  //call the navigate function on top of functional component, otherwise I'm breaking the rules
+  const navigate = useNavigate();
+
   async function submit(e) {
+    console.log('inside submit function');
     e.preventDefault();
 
     try {
-      await axios.post('/api', { username, password });
+      console.log('axios call about to start');
+      await axios
+        .post('/api', { username, password })
+        .then(function (response) {
+          console.log(response.status);
+          if (response.status === 200) {
+            navigate('/home', { replace: true });
+          }
+        });
+      setUsername('');
+      setPassword('');
+      console.log('axios done');
     } catch (e) {
+      res.status(500);
       console.log(e);
     }
   }
@@ -22,10 +38,11 @@ const Login = () => {
     <div className='login'>
       <h2>Login Page</h2>
 
-      <form action='POST'>
+      <form onSubmit={submit}>
         <input
           type='text'
           placeholder='username'
+          value={username}
           onChange={(e) => {
             setUsername(e.target.value);
           }}
@@ -33,11 +50,12 @@ const Login = () => {
         <input
           type='password'
           placeholder='password'
+          value={password}
           onChange={(e) => {
             setPassword(e.target.value);
           }}
         ></input>
-        <button className='btn' type='submit' onClick={submit}>
+        <button className='btn' type='submit'>
           Submit
         </button>
       </form>
