@@ -20,7 +20,7 @@ const Login = () => {
 
   return (
     <div className='login'>
-      <h1>Login Page</h1>
+      <h2>Login Page</h2>
 
       <form action='POST'>
         <input
@@ -37,7 +37,9 @@ const Login = () => {
             setPassword(e.target.value);
           }}
         ></input>
-        <input type='submit' onClick={submit}></input>
+        <button className='btn' type='submit' onClick={submit}>
+          Submit
+        </button>
       </form>
 
       <br />

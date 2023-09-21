@@ -8,16 +8,28 @@ const SignUp = () => {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
 
+  function clearInput() {
+    console.log('hello');
+    setFirstName('');
+    setEmail('');
+    setUsername('');
+    setPassword('');
+  }
+
   async function submit(e) {
+    console.log('submit firts');
     e.preventDefault();
 
     try {
-      await axios.post('/sign-up', {
+      console.log('axios call');
+      await axios.post('/api/sign-up', {
         firstName,
         email,
         username,
         password,
       });
+      console.log('axios done')
+      clearInput();
     } catch (e) {
       console.log(e);
     }
@@ -26,7 +38,7 @@ const SignUp = () => {
   return (
     <div className='signup'>
       <h1>Sign Up Page</h1>
-      <form action='POST'>
+      <form onSubmit={submit}>
         <input
           type='text'
           placeholder='First Name'
@@ -47,7 +59,7 @@ const SignUp = () => {
           placeholder='password'
           onChange={(e) => setPassword(e.target.value)}
         ></input>
-        <input type='submit' onClick={submit}></input>
+        <button type='submit'></button>
       </form>
 
       <br />

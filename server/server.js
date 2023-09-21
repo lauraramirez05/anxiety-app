@@ -2,6 +2,7 @@ const express = require('express');
 const mongoose = require('mongoose');
 const cors = require('cors');
 const path = require('path');
+const userController = require('./controllers/UserController');
 
 //Initializes a new express application handles HTTP requests and middleware
 const app = express();
@@ -33,19 +34,19 @@ app.get('/', (req, res) => {
 });
 
 app.post('/api', (req, res) => {
-  console.log('hello');
   console.log(req.body);
 });
 
-app.get('/api/sign-up', (req, res) => {
+app.post('/api/sign-up', userController.createUser, (req, res) => {
   console.log('inside of get signup');
-  res.status(200).sendFile(path.join(__dirname, '../client/public/index.html'));
+  console.log(req.body);
+  res.status(200).send('ok');
 });
 
-app.post('/sign-up', (req, res) => {
-  console.log('hellooo');
-  res.status(200);
-});
+// app.post('/sign-up', (req, res) => {
+//   console.log('hellooo');
+//   res.status(200);
+// });
 
 app.use((req, res) => res.sendStatus(404));
 
