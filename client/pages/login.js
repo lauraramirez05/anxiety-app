@@ -29,7 +29,6 @@ const Login = () => {
       setPassword('');
       console.log('axios done');
     } catch (e) {
-      res.status(500);
       console.log(e);
     }
   }

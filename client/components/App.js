@@ -20,17 +20,5 @@ function App() {
   );
 }
 
-// function App() {
-//   return (
-//     (<div>HELLOOOOOOO</div>),
-//   //   (
-//   //     <Router>
-//   //       <Routes>
-//   //         <Route path='/sign-up' element={<SignUp />}></Route>
-//   //       </Routes>
-//   //     </Router>
-//   //   )
-//     )
-// }
 
 export default App;

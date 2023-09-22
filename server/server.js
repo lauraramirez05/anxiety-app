@@ -3,6 +3,7 @@ const mongoose = require('mongoose');
 const cors = require('cors');
 const path = require('path');
 const userController = require('./controllers/UserController');
+const logController = require('./controllers/LogController');
 
 //Initializes a new express application handles HTTP requests and middleware
 const app = express();
@@ -35,8 +36,6 @@ app.get('/', (req, res) => {
   res.status(200).sendFile(__dirname, '../bundle/index.html');
 });
 
-
-
 app.post('/api', userController.getUser, (req, res) => {
   console.log('inside login post');
   console.log(req.body);
@@ -49,10 +48,11 @@ app.post('/api/sign-up', userController.createUser, (req, res) => {
   res.status(200).send('ok');
 });
 
-app.post('/api/home', (req,res) => {
-  
-})
-
+app.post('/api/home', logController.createLog, (req, res) => {
+  console.log('inside of api/home');
+  console.log(req.body);
+  res.status(200).send('ok');
+});
 
 // app.post('/sign-up', (req, res) => {
 //   console.log('hellooo');

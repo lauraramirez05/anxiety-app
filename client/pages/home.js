@@ -1,12 +1,14 @@
 import React, { useState } from 'react';
 import axios from 'axios';
+import Entry from '../components/Entry';
 
 const Home = () => {
   const [anxietyLevel, setAnxietyLevel] = useState('');
   const [trigger, setTrigger] = useState('');
   const [log, setLog] = useState('');
+  const [entries, setEntries] = useState([]);
 
-  async function handleChoice(e) {
+  async function handleClick(e) {
     e.preventDefault();
 
     try {
@@ -23,7 +25,7 @@ const Home = () => {
   return (
     <div className='log-container'>
       <div className='welcome'>
-        <h1>Welcome Back ...</h1>
+        <h2>Welcome Back ...</h2>
       </div>
 
       <form>
@@ -48,7 +50,9 @@ const Home = () => {
         <label htmlFor='log'>Log about your day:</label>
         <input id='log' onChange={(e) => setLog(e.target.value)}></input>
 
-        <button className='btn'>Submit</button>
+        <button className='btn' onClick={handleClick}>
+          Submit
+        </button>
       </form>
     </div>
   );
